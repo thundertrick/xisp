@@ -1,15 +1,15 @@
 # Xisp
-A simple lisp style language. Easy to be parsed in other languages
+A simple lisp style language. Easy to be parsed in other languages. Xisp works like a USB memory stick that be embedded into any other language.
 
-## Target
-Xisp is developed for sending executable logic across devices, which might be Android or iOS. Xisp is designed short, simple and easy to be parsed. Xisp **only** deals with basic operators and structures.
+## 1. Target
+Xisp is developed for sending executable logic across devices, which might be Android or iOS. Xisp is designed short, simple and easy to be parsed. Xisp **only** deals with basic operators and structures. 
 
-## Grammar
+## 2. Grammar
 ~~~
 ; After a ';', this is comment
 (operator, val1, val2, ...) ; returns the result val
 ~~~
-### Structures
+### 2.1 Structures
 1. Constants
 
  ~~~lisp
@@ -28,7 +28,15 @@ Xisp is developed for sending executable logic across devices, which might be An
 +-*/%~><   ; 2 val operator
 ~~~
 
-### Key words & Usages
+3. Functions:
+ Function name should avoid key words, or xisp will stop running. See more in 2.3 Illegal Usage.
+ 
+ ~~~lisp
+ (def, f, (+, a, b))  ; Define a function `f(a, b) -> a + b`
+ (f, 1, 2)            ; Returns 3
+ ~~~
+
+### 2.2 Key words & Usages
 1. Defination: `def`
 
  ~~~lisp
@@ -38,7 +46,7 @@ Xisp is developed for sending executable logic across devices, which might be An
 	(def, f, (+, a, b))    ; Define a function `f(a, b) -> a + b`, note all unassigned val will be treated as inputs for the function
 	~~~ 
 
-2. Release: 'rls'
+2. Release: `rls`
 
  ~~~lisp
 	; Example for 'rls'
@@ -68,3 +76,45 @@ Xisp is developed for sending executable logic across devices, which might be An
 	  ()                          ; } else { do nothing }
 	)
 	~~~
+
+5. Exceptions: `try`
+
+ ~~~lisp
+ (try,
+   (def, def),                          ; Try exp  : Try some dangerous things
+   (log, "Error: override key words")   ; Catch exp: Do if something is wrong
+ )
+ ~~~
+ 
+6. Print: `log`
+ 
+ ~~~lisp
+ (log, "hello world") ; print hello world
+ ~~~ 
+
+### 2.3 Illegal usages
+In all usages in this section, Xisp will stop running and go to the nearest catch exp if avaliable.
+
+1. Override key words:
+
+ ~~~lisp
+ (def, def)
+ ~~~
+ 
+2. Too less inputs:
+
+ ~~~lisp
+ (+, 1)
+ ~~~
+ 
+3. Too more inputs:
+
+ ~~~lisp
+ (+, 1, 1, 1)
+ ~~~
+ 
+4. Undefined val:
+ 
+ ~~~lisp
+ (++, a)
+ ~~~
