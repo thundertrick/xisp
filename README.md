@@ -1,8 +1,8 @@
 # Xisp
-A simple lisp style language. Easy to be parsed in other languages. Xisp works like a USB memory stick that be embedded into any other language.
+A simple lisp style language. Easy to be parsed in other languages. Xisp works like a USB memory stick that be easily parsed and embedded in any other language.
 
 ## 1. Target
-Xisp is developed for sending executable logic across devices, which might be Android or iOS. Xisp is designed short, simple and easy to be parsed. Xisp **only** deals with basic operators and structures. 
+Xisp is developed for sending executable logic across devices, which might be Android or iOS. Xisp is designed short, simple and easy to be parsed. Xisp **only** deals with basic operators and structures. Any complex things should be  implemented by the language who parses Xisp.
 
 ## 2. Grammar
 ~~~
@@ -35,6 +35,14 @@ Xisp is developed for sending executable logic across devices, which might be An
  (def, f, (+, a, b))  ; Define a function `f(a, b) -> a + b`
  (f, 1, 2)            ; Returns 3
  ~~~
+ 
+4. OO: `.` and `this` is used to interact with OO languages
+
+ ~~~
+ ; with java
+ (Log.d, "TAG", this.testStr)
+ ~~~
+ 
 
 ### 2.2 Key words & Usages
 1. Defination: `def`
